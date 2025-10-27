@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        // This title comes from your index.js route
+        title= title 
+        // Link to the CSS file in the 'public/css' folder
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1= title
+        
+        // Link to the "Add New" form page
+        a(href="/update-cobj") Add to this table
+        
+        table(class="cobj-table")
+            thead
+                tr
+                    th Name
+                    th Bio
+                    th Age
+            tbody
+                // 
+                // === THIS IS THE FIX ===
+                // Loop over 'data' (which you passed from index.js)
+                // Also, check if 'data' exists first
+                //
+                if data
+                    each record in data
+                        tr
+                            td= record.properties.name
+                            td= record.properties.bio
+                            td= record.properties.age
+                else
+                    tr
+                        td(colspan="3") No records found.
